@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 logging.basicConfig(level=logging.WARNING)
 
 
+
 class Controller:
     def __init__(self) -> None:
 
@@ -28,7 +29,7 @@ class Controller:
         with open(settings.prompt_template_dir / settings.system_prompt_file, 'r') as f:
             system_prompt: str = f.read()
 
-        model = ChatOpenAI()
+        model = ChatOpenAI(model="lmstudio", openai_api_key='myfakekey', model_kwargs={"api_base": settings.openai_server_url})  # Update this line
         parser = StrOutputParser()
 
         prompt = ChatPromptTemplate.from_messages(
